@@ -2,10 +2,9 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useCallback } from 'react';
 import { ARTICLE_IDS } from '../../constants';
 import Article from '../Article';
-import UnderConstruction from './UnderConstruction';
+import Timeline from '../Timeline';
 import ContactForm from '../ContactForm';
 import CodeMemoji from '../CodeMemoji';
-import pic01 from '../../images/pic01.jpg';
 import wave from '../../images/wave_emoji.png';
 import styles from './styles.module.scss';
 
@@ -36,7 +35,11 @@ function Main({
     };
   }, [escFunction]);
 
-  const baseArticleProps = { article, timeout: articleTimeout, onClose: onCloseArticle };
+  const baseArticleProps = {
+    article,
+    timeout: articleTimeout,
+    onClose: onCloseArticle,
+  };
   return (
     <div
       ref={setWrapperRef}
@@ -66,32 +69,20 @@ function Main({
         </>
       </Article>
 
-      <Article
-        title="Work"
-        id={ARTICLE_IDS.Work}
-        img={<img src={pic01} />}
-        {...baseArticleProps}
-      >
-        <UnderConstruction />
+      <Article title="Career" id={ARTICLE_IDS.Career} {...baseArticleProps}>
+        <div style={{ paddingBottom: '0.5rem' }}>
+          {'View on '}
+          <a href="https://www.linkedin.com/in/michaelcclayton/">LinkedIn</a>
+        </div>
+        <Timeline />
       </Article>
 
-      <Article
-        title="About"
-        id={ARTICLE_IDS.About}
-        img={<img src={pic01} />}
-        {...baseArticleProps}
-      >
-        <UnderConstruction />
-      </Article>
-
-      <Article
-        title="Contact"
-        id={ARTICLE_IDS.Contact}
-        {...baseArticleProps}
-      >
+      <Article title="Contact" id={ARTICLE_IDS.Contact} {...baseArticleProps}>
         <blockquote>
-          I seek opportunities to challenge my intellect, develop my professional career, and make an impact.
-          If you have such an opportunity, or are interested in working with me, please reach out to me using the form below.
+          I seek opportunities to challenge my intellect, develop my
+          professional career, and make an impact. If you have such an
+          opportunity, or are interested in working with me, please reach out to
+          me using the form below.
         </blockquote>
         <ContactForm />
       </Article>

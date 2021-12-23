@@ -1,14 +1,17 @@
-@import '../../assets/scss/libs/skel';
-@import '../../assets/scss/libs/mixins';
-@import '../../assets/scss/libs/functions';
-@import '../../assets/scss/libs/vars';
+@import "../../assets/scss/libs/skel";
+@import "../../assets/scss/libs/mixins";
+@import "../../assets/scss/libs/functions";
+@import "../../assets/scss/libs/vars";
 
 .article {
-  @include vendor('transform', 'translateY(0.25rem)');
-  @include vendor('transition', (
-    'opacity #{_duration(article)} ease-in-out',
-    'transform #{_duration(article)} ease-in-out'
-  ));
+  @include vendor("transform", "translateY(0.25rem)");
+  @include vendor(
+    "transition",
+    (
+      "opacity #{_duration(article)} ease-in-out",
+      "transform #{_duration(article)} ease-in-out"
+    )
+  );
   @include padding(1rem, 1rem, (0, 0, 2rem, 0));
   position: relative;
   width: 40rem;
@@ -26,7 +29,7 @@
   }
 
   &.active.timeout {
-    @include vendor('transform', 'translateY(0)');
+    @include vendor("transform", "translateY(0)");
     opacity: 1;
   }
 
@@ -47,19 +50,18 @@
   }
 }
 
-
 .titleBar {
   $button-size: 12px;
 
-  @include vendor('display', 'flex');
-  @include vendor('justify-content', 'space-between');
-  @include vendor('align-items', 'center');
+  @include vendor("display", "flex");
+  @include vendor("justify-content", "space-between");
+  @include vendor("align-items", "center");
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
 
   .buttons span {
-    @include vendor('transition', 'opacity .2s ease-in-out');
+    @include vendor("transition", "opacity .2s ease-in-out");
     margin-right: 0.5rem;
     line-height: 0;
     font-size: 12px;
@@ -88,29 +90,29 @@
     position: relative;
     padding: 4px 0;
     &:after {
-      @include vendor('transition', 'opacity .2s ease-in-out');
+      @include vendor("transition", "opacity .2s ease-in-out");
       position: absolute;
       top: 4px;
       left: 2px;
       opacity: 0;
-      content: 'x';
+      content: "x";
       z-index: 5;
     }
     text-align: center;
     cursor: pointer;
-    color: #6A1814;
-    background: #EF6A5E;
-    border: 1px solid #E15F53;
+    color: #6a1814;
+    background: #ef6a5e;
+    border: 1px solid #e15f53;
   }
 
   .mini {
     background: rgba(253, 188, 64, 1);
-    border: 1px solid #E8B24A;
+    border: 1px solid #e8b24a;
   }
 
   .max {
     background: rgba(52, 204, 74, 1);
-    border: 1px solid #5BB94C;
+    border: 1px solid #5bb94c;
   }
 
   .title {

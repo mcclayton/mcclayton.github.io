@@ -28,7 +28,6 @@ ${PARTY_HORSE}
 
 export const ARTICLE_IDS = {
   Intro: 'intro',
-  About: 'about',
-  Work: 'work',
+  Career: 'career',
   Contact: 'contact',
 };
