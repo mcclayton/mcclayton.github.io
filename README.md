@@ -4,23 +4,22 @@
 ![](src/images/mcc.svg)
 
 ## View Live Site
-https://www.michaelcclayton.com
+http://michaelcclayton.com
 
 ## Run Locally
-The development server can be started locally with:
-```
-yarn start
-```
+- Requires Node 24.15+ and npm 10+ (`nvm install && nvm use`).
+- Install dependencies: `npm install`
+- Start the Vite dev server: `npm run dev`
 
 ## Run Tests
 ```
-yarn test
+npm test
 ```
 
 ## Deploy Site
 To deploy this site to [Github Pages](https://pages.github.com/) (must be properly authenticated), run:
 ```
-yarn deploy
+npm run deploy
 ```
 
 ## Code Style Guide
@@ -28,5 +27,5 @@ yarn deploy
 
 [Prettier](https://prettier.io/) is used to format this codebase and can be run with:
 ```
-yarn format
+npm run format
 ```

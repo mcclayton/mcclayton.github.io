@@ -1,3 +1,4 @@
+@use '../globals' as *;
 ///
 /// Dimension by HTML5 UP
 /// html5up.net | @ajlkn
@@ -29,7 +30,7 @@
 
   &.tropical {
     &:after {
-      background-image: url("../../images/tropical.gif");
+      background-image: url("@/images/tropical.gif");
     }
   }
 
@@ -38,12 +39,12 @@
     @include vendor(
       "transition",
       (
-        "transform #{_duration(article)} ease-in-out",
-        "filter #{_duration(article)} ease-in-out"
+        "transform #{duration(article)} ease-in-out",
+        "filter #{duration(article)} ease-in-out"
       )
     );
 
-    background-image: url("../../images/bg.jpg");
+    background-image: url("@/images/bg.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -59,7 +60,7 @@
 
   .body.is-loading & {
     &:before {
-      background-color: _palette(bg-alt);
+      background-color: palette(bg-alt);
     }
   }
 }

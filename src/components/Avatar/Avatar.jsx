@@ -7,7 +7,11 @@ const Avatar = () => (
     <div className={styles.scrollWrapper}>
       <div className={styles.scrollingBackground} />
     </div>
-    <img src={portrait} className={styles.portrait} />
+    <img
+      src={portrait}
+      className={styles.portrait}
+      alt="Portrait of Michael Clayton"
+    />
   </div>
 );
 

@@ -1,3 +1,4 @@
+@use '../globals' as *;
 ///
 /// Dimension by HTML5 UP
 /// html5up.net | @ajlkn
@@ -7,16 +8,16 @@
 /* Image */
 
 .image {
-  border-radius: _size(border-radius);
+  border-radius: size(border-radius);
   border: 0;
   display: inline-block;
   position: relative;
 
   &:before {
     @include vendor('pointer-events', 'none');
-    background-image: url('../../images/overlay.png');
-    background-color: _palette(bg-overlay);
-    border-radius: _size(border-radius);
+    background-image: url('@/images/overlay.png');
+    background-color: palette(bg-overlay);
+    border-radius: size(border-radius);
     content: '';
     display: block;
     height: 100%;
@@ -28,25 +29,25 @@
   }
 
   img {
-    border-radius: _size(border-radius);
+    border-radius: size(border-radius);
     display: block;
   }
 
   &.main {
     display: block;
-    margin: 0 0 (_size(element-margin) * 1.25) 0;
+    margin: 0 0 (size(element-margin) * 1.25) 0;
     width: 100%;
   }
 
   @include breakpoint(small) {
     &.main {
-      margin: 0 0 (_size(element-margin) * 1) 0;
+      margin: 0 0 (size(element-margin) * 1) 0;
     }
   }
 
   @include breakpoint(xsmall) {
     &.main {
-      margin: 0 0 (_size(element-margin) * .75) 0;
+      margin: 0 0 (size(element-margin) * .75) 0;
     }
   }
 }

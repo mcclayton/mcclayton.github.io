@@ -1,7 +1,4 @@
-@import '../../assets/scss/libs/skel';
-@import '../../assets/scss/libs/mixins';
-@import '../../assets/scss/libs/functions';
-@import '../../assets/scss/libs/vars';
+@use '../../assets/scss/globals' as *;
 
 .container {
   &:hover {

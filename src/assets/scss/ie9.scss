@@ -1,7 +1,4 @@
-@import 'libs/vars';
-@import 'libs/functions';
-@import 'libs/mixins';
-@import 'libs/skel';
+@use 'globals' as *;
 
 /*
 Dimension by HTML5 UP
@@ -13,7 +10,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 #bg {
   &:before {
-    background: _palette(bg-overlay);
+    background: palette(bg-overlay);
   }
 }
 

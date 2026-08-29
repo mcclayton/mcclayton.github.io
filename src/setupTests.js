@@ -1,4 +1,7 @@
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-Enzyme.configure({ adapter: new Adapter() });
+afterEach(() => {
+  cleanup();
+});

@@ -1,28 +1,34 @@
-version: 2
+version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:24.20
     environment:
       - NODE_ENV: development
     working_directory: ~/mcclayton.github.io
     steps:
-      - checkout
-      - restore_cache:
-          key: website-yarn-{{ checksum "yarn.lock" }}
       - run:
-          name: Yarn Install
+          name: Checkout source
           command: |
-            yarn install
-      - save_cache:
-          key: website-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/mcclayton.github.io/node_modules
+            git clone --no-checkout \
+              "https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git" .
+            git checkout "${CIRCLE_SHA1}"
+      - restore_cache:
+          key: website-npm-v1-{{ checksum "package-lock.json" }}
       - run:
-          name: Run JS Tests
-          command: yarn test --maxWorkers=1
+          name: Install dependencies
+          command: npm ci
+      - save_cache:
+          key: website-npm-v1-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.npm
+      - run:
+          name: Run tests
+          command: npm test -- --run
+      - run:
+          name: Build production site
+          command: npm run build
 workflows:
-  version: 2
   build_and_test:
     jobs:
       - test

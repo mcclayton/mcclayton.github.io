@@ -154,10 +154,17 @@ function Entry({
       <li>
         <div className={styles.blank}>
           <div className={styles.marker}>
-            {img && <img className={styles.image} src={img} />}
+            {img && <img className={styles.image} src={img} alt="" />}
           </div>
         </div>
-        <div className={styles.content} onClick={expand}>
+        <div
+          className={styles.content}
+          role="button"
+          tabIndex={0}
+          aria-label={`Expand ${company} role details`}
+          onClick={expand}
+          onKeyDown={(event) => handleActivation(event, expand)}
+        >
           <div className={styles.line} />
           <div className={styles.text}>
             <h3>{company}</h3>
@@ -174,16 +181,30 @@ function DetailCard({ company, title, subTitle, img, children, onClose }) {
   return (
     <div className={styles.details}>
       <span className={styles.header}>
-        <img className={styles.image} src={img} />
+        <img className={styles.image} src={img} alt={`${company} logo`} />
         <div className={styles.title}>{`${company}, ${title}`}</div>
       </span>
       <hr className={styles.divider} />
       {children}
-      <div onClick={onClose} className={cx('icon', 'fa-close', styles.close)}>
+      <div
+        onClick={onClose}
+        onKeyDown={(event) => handleActivation(event, onClose)}
+        role="button"
+        tabIndex={0}
+        aria-label={`Close ${company} role details`}
+        className={cx('icon', 'fa-close', styles.close)}
+      >
         {' Close'}
       </div>
     </div>
   );
+}
+
+function handleActivation(event, action) {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    action();
+  }
 }
 
 function Bullets({ points }) {

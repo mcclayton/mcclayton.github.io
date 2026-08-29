@@ -14,7 +14,7 @@ const FORM_STATUSES = {
   SUCCESS: 3,
 };
 
-const createErrorReponse = (message) => ({
+const createErrorResponse = (message) => ({
   errors: [{ message }],
 });
 
@@ -26,7 +26,7 @@ const ContactForm = () => {
   const [userType, setUserType] = useState(USER_TYPE.NONE);
   const [honeypotModified, setHoneypotModified] = useState(false);
 
-  const submitForm = (e, userType) => {
+  const submitForm = async (e, userType) => {
     e.preventDefault();
 
     const form = e.target;
@@ -38,39 +38,51 @@ const ContactForm = () => {
     ) {
       updateFormState({
         status: FORM_STATUSES.ERROR,
-        response: createErrorReponse("Robots don't have thumbs."),
+        response: createErrorResponse("Robots don't have thumbs."),
       });
       return;
     } else if (userType === USER_TYPE.NONE) {
       updateFormState({
         status: FORM_STATUSES.ERROR,
-        response: createErrorReponse(
+        response: createErrorResponse(
           "Please specify if you're a robot or human."
         ),
       });
       return;
     }
 
-    const xhr = new XMLHttpRequest();
-    xhr.open(form.method, form.action);
     updateFormState({ status: FORM_STATUSES.SENDING, response: null });
-    xhr.setRequestHeader('Accept', 'application/json');
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState !== XMLHttpRequest.DONE) return;
-      if (xhr.status === 200) {
+
+    try {
+      const result = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      const response = await result.json().catch(() => null);
+
+      if (result.ok) {
         form.reset();
+        setUserType(USER_TYPE.NONE);
+        setHoneypotModified(false);
         updateFormState({
           status: FORM_STATUSES.SUCCESS,
-          response: JSON.parse(xhr.response),
+          response,
         });
       } else {
         updateFormState({
           status: FORM_STATUSES.ERROR,
-          response: JSON.parse(xhr.response),
+          response: normalizeErrorResponse(response),
         });
       }
-    };
-    xhr.send(data);
+    } catch {
+      updateFormState({
+        status: FORM_STATUSES.ERROR,
+        response: createErrorResponse(
+          'Unable to reach the contact service. Please try again.'
+        ),
+      });
+    }
   };
 
   const { status, response } = state;
@@ -79,7 +91,12 @@ const ContactForm = () => {
     <ul className="actions">
       {status === FORM_STATUSES.SENDING && (
         <li>
-          <input type="button" value="Sending..." className="special" />
+          <input
+            type="button"
+            value="Sending..."
+            className="special"
+            disabled
+          />
         </li>
       )}
       {(status === FORM_STATUSES.DRAFT || status === FORM_STATUSES.ERROR) && (
@@ -106,42 +123,55 @@ const ContactForm = () => {
         method="POST"
         action={FORMSPREE_URL}
         onSubmit={(e) => submitForm(e, userType)}
+        onReset={() => {
+          setUserType(USER_TYPE.NONE);
+          setHoneypotModified(false);
+          updateFormState({ status: FORM_STATUSES.DRAFT, response: null });
+        }}
       >
         <div className="field half first">
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name" required />
         </div>
         <div className="field half">
           <label htmlFor="email">Email</label>
-          <input type="text" name="email" id="email" />
+          <input type="email" name="email" id="email" required />
         </div>
         <HoneypotField onChange={() => setHoneypotModified(true)} />
         <div className="field">
           <label htmlFor="message">Message</label>
-          <textarea name="message" id="message" rows="4"></textarea>
+          <textarea name="message" id="message" rows="4" required></textarea>
         </div>
-        {status === FORM_STATUSES.SUCCESS && (
-          <h3>Submission confirmed — thank you!</h3>
-        )}
-        {status === FORM_STATUSES.ERROR && (
-          <>
-            <h3 style={{ opacity: '0.4' }}>
-              Error: Failed to submit contact form
-            </h3>
-            <ul>
-              {response.errors.map((err) => (
-                <li key={getErrorMessage(err)} style={{ opacity: '0.5' }}>
-                  {getErrorMessage(err)}
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
+        <div role="status" aria-live="polite">
+          {status === FORM_STATUSES.SUCCESS && (
+            <h3>Submission confirmed — thank you!</h3>
+          )}
+          {status === FORM_STATUSES.ERROR && (
+            <>
+              <h3 style={{ opacity: '0.4' }}>
+                Error: Failed to submit contact form
+              </h3>
+              <ul>
+                {response.errors.map((err) => (
+                  <li key={getErrorMessage(err)} style={{ opacity: '0.5' }}>
+                    {getErrorMessage(err)}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
         {actions}
       </form>
     </>
   );
 };
+
+function normalizeErrorResponse(response) {
+  return response && Array.isArray(response.errors)
+    ? response
+    : createErrorResponse('The contact service rejected the submission.');
+}
 
 function getErrorMessage(err) {
   if (err && err.field) {

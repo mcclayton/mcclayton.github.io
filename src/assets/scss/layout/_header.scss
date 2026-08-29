@@ -1,3 +1,4 @@
+@use '../globals' as *;
 ///
 /// Dimension by HTML5 UP
 /// html5up.net | @ajlkn
@@ -13,16 +14,16 @@
   @include vendor(
     'transition',
     (
-      'transform #{_duration(article)} ease-in-out',
-      'filter #{_duration(article)} ease-in-out',
-      'opacity #{_duration(article)} ease-in-out'
+      'transform #{duration(article)} ease-in-out',
+      'filter #{duration(article)} ease-in-out',
+      'opacity #{duration(article)} ease-in-out'
     )
   );
   max-width: 100%;
   text-align: center;
 
   > * {
-    @include vendor('transition', 'opacity #{_duration(article)} ease-in-out');
+    @include vendor('transition', 'opacity #{duration(article)} ease-in-out');
     position: relative;
   }
 
@@ -55,9 +56,9 @@
       @include vendor(
         'transition',
         (
-          'max-height #{_duration(intro)} ease',
-          'padding #{_duration(intro)} ease',
-          'opacity #{_duration(article)} ease-in-out'
+          'max-height #{duration(intro)} ease',
+          'padding #{duration(intro)} ease',
+          'opacity #{duration(article)} ease-in-out'
         )
       );
       @include vendor('transition-delay', '0.25s');
@@ -72,7 +73,7 @@
 
     p {
       text-transform: uppercase;
-      letter-spacing: _font(letter-spacing);
+      letter-spacing: font(letter-spacing);
       font-size: 0.8rem;
       line-height: 2;
     }
@@ -99,7 +100,7 @@
       );
       margin-bottom: 0;
       list-style: none;
-      border-radius: _size(border-radius);
+      border-radius: size(border-radius);
 
       li {
         button {
@@ -107,10 +108,10 @@
           min-width: 7.5rem;
           height: 2.75rem;
           line-height: 2.75rem;
-          padding: 0 1.25rem 0 (1.25rem + _font(letter-spacing));
-          letter-spacing: _font(letter-spacing);
+          padding: 0 1.25rem 0 (1.25rem + font(letter-spacing));
+          letter-spacing: font(letter-spacing);
           font-size: 0.8rem;
-          font-family: _font(family);
+          font-family: font(family);
           border: none;
           box-shadow: none;
         }
