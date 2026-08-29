@@ -1,15 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import Button from '../Button';
 
 describe('<Button />', () => {
   it('renders children correctly', () => {
-    const MockCmp = () => null;
-    const wrapper = shallow(
+    render(
       <Button>
-        <MockCmp />
+        <span>Click me</span>
       </Button>
     );
-    expect(wrapper.find(MockCmp).exists()).toBe(true);
+
+    expect(screen.getByText('Click me')).toBeInTheDocument();
   });
 });

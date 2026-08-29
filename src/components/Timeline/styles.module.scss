@@ -1,14 +1,12 @@
-@import "../../assets/scss/libs/skel";
-@import "../../assets/scss/libs/mixins";
-@import "../../assets/scss/libs/functions";
-@import "../../assets/scss/libs/vars";
+@use "sass:color";
+@use "../../assets/scss/globals" as *;
 
 .container {
   padding: 1rem;
   margin-bottom: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
-  background-color: transparentize(_palette(bg), 0.5);
+  background-color: color.adjust(palette(bg), $alpha: -0.5);
 }
 
 .details {

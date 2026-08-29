@@ -30,10 +30,11 @@ export const HoneypotField = ({ onChange }) => {
   return (
     <div className="field">
       <input
-        tabIndex="-1"
+        tabIndex={-1}
+        aria-hidden="true"
         autoComplete="off"
         className={cx(styles.honeypotField)}
-        type={HONEY_POT_FIELD}
+        type="text"
         name={HONEY_POT_FIELD}
         id={HONEY_POT_FIELD}
         onChange={onChange}
@@ -47,15 +48,26 @@ const HumanVerifier = ({ userType, onChange }) => {
     onChange(type);
   }
 
+  function handleKeyDown(event, type) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleClick(type);
+    }
+  }
+
   return (
     <div>
-      <label>I am a:</label>
-      <div>
+      <div id="user-type-label">I am a:</div>
+      <div role="radiogroup" aria-labelledby="user-type-label">
         <span
           className={cx([styles.userOption], {
             active: userType === USER_TYPE.ROBOT,
           })}
+          role="radio"
+          tabIndex={0}
+          aria-checked={userType === USER_TYPE.ROBOT}
           onClick={() => handleClick(USER_TYPE.ROBOT)}
+          onKeyDown={(event) => handleKeyDown(event, USER_TYPE.ROBOT)}
         >
           🤖 Robot
         </span>
@@ -63,7 +75,11 @@ const HumanVerifier = ({ userType, onChange }) => {
           className={cx([styles.userOption], {
             active: userType === USER_TYPE.HUMAN,
           })}
+          role="radio"
+          tabIndex={0}
+          aria-checked={userType === USER_TYPE.HUMAN}
           onClick={() => handleClick(USER_TYPE.HUMAN)}
+          onKeyDown={(event) => handleKeyDown(event, USER_TYPE.HUMAN)}
         >
           👀 Human
         </span>

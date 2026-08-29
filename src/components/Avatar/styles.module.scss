@@ -1,4 +1,4 @@
-@import '../../assets/scss/libs/skel';
+@use '../../assets/scss/globals' as *;
 
 $image-size: 200px;
 // Ensure image used is 3x image-size

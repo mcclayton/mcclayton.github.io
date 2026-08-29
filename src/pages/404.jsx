@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link } from 'react-router-dom';
 import Layout from '../components/layout';
 import Spinner from '../components/Spinner';
 

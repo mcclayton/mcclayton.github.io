@@ -1,0 +1,16 @@
+{
+  "name": "Michael C. Clayton",
+  "short_name": "Michael Clayton",
+  "description": "Michael Clayton's Online Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1b1f22",
+  "theme_color": "#1b1f22",
+  "icons": [
+    {
+      "src": "/mcc.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
