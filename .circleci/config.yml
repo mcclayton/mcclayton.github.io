@@ -7,7 +7,12 @@ jobs:
       - NODE_ENV: development
     working_directory: ~/mcclayton.github.io
     steps:
-      - checkout
+      - run:
+          name: Checkout source
+          command: |
+            git clone --no-checkout \
+              "https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git" .
+            git checkout "${CIRCLE_SHA1}"
       - restore_cache:
           key: website-npm-v1-{{ checksum "package-lock.json" }}
       - run:
