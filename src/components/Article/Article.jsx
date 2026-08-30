@@ -1,7 +1,6 @@
 import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './styles.module.scss';
-const cx = classNames.bind(styles);
+import classNames from 'classnames';
+import * as styles from './styles.css';
 
 const Article = ({
   id,
@@ -13,7 +12,7 @@ const Article = ({
   img,
   ...props
 }) => {
-  const classes = cx(styles.article, {
+  const classes = classNames(styles.article, {
     [styles.active]: article === id,
     [styles.timeout]: !!timeout,
   });
@@ -23,7 +22,7 @@ const Article = ({
       <div className={styles.content}>
         <>
           {img && (
-            <span className={cx('image', 'main', styles.imgContainer)}>
+            <span className={classNames('image', 'main', styles.imgContainer)}>
               {img}
             </span>
           )}

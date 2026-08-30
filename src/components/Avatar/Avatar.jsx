@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.scss';
+import * as styles from './styles.css';
 import portrait from '../../images/portrait.png';
 
 const Avatar = () => (

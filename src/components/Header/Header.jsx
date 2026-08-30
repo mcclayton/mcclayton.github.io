@@ -4,7 +4,7 @@ import { ARTICLE_IDS } from '../../constants';
 import Button from '../Button';
 import InitialsLogo from '../InitialsLogo';
 import Avatar from '../Avatar';
-import styles from './styles.module.scss';
+import * as styles from './styles.css';
 
 const Header = (props) => (
   <header id="header" style={props.timeout ? { display: 'none' } : {}}>

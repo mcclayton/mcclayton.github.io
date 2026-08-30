@@ -1,6 +1,6 @@
 import React from 'react';
 import InitialsLogo from '../InitialsLogo';
-import styles from './styles.module.scss';
+import * as styles from './styles.css';
 
 const Spinner = ({ children, ...props }) => (
   <div className={styles.container}>

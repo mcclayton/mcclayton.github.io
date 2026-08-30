@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { PARTY_HORSE } from '../constants';
 
-import '../assets/scss/main.scss';
+import '../styles/global.css';
 
 const Layout = ({ children }) => {
   const location = useLocation();

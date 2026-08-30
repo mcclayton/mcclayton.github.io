@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import styles from './styles.module.scss';
+import * as styles from './styles.css';
 const cx = classnames.bind(styles);
 
 const InitialsLogo = ({ color = 'white', strokeWidth = 2, size = 200, loader = false }) => (

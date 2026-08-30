@@ -6,7 +6,7 @@ import Timeline from '../Timeline';
 import ContactForm from '../ContactForm';
 import CodeMemoji from '../CodeMemoji';
 import wave from '../../images/wave_emoji.png';
-import styles from './styles.module.scss';
+import * as styles from './styles.css';
 
 const ESCAPE_KEY_VALUES = [27, 'Escape'];
 

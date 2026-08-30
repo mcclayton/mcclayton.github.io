@@ -7,6 +7,7 @@
     "npm": ">=10"
   },
   "dependencies": {
+    "@vanilla-extract/css": "^1.21.2",
     "classnames": "^2.5.1",
     "copy-text-to-clipboard": "^3.2.0",
     "prop-types": "^15.8.1",
@@ -26,7 +27,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "vite build && cp dist/index.html dist/404.html && gh-pages -d dist",
-    "format": "prettier --write \"**/*.{js,jsx,scss,css}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "test": "vitest",
     "test:watch": "vitest watch"
   },
@@ -36,11 +37,11 @@
     "@testing-library/react": "^16.3.3",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vanilla-extract/vite-plugin": "^5.2.6",
     "@vitejs/plugin-react": "^6.1.1",
     "gh-pages": "^6.1.1",
     "jsdom": "^30.0.1",
     "prettier": "^3.9.6",
-    "sass-embedded": "^1.103.1",
     "vite": "^8.2.2",
     "vitest": "^4.1.11"
   },

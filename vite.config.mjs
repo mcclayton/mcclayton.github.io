@@ -1,21 +1,18 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
-export default defineConfig({
-  plugins: [react()],
+export default defineConfig(({ mode }) => ({
+  plugins: [
+    react(),
+    vanillaExtractPlugin({
+      identifiers: mode === 'production' ? 'short' : 'debug',
+    }),
+  ],
   resolve: {
     alias: {
       '@': resolve(import.meta.dirname, 'src'),
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@use "globals" as *;\n',
-        api: 'modern-compiler',
-        loadPaths: [resolve(import.meta.dirname, 'src/assets/scss')],
-      },
     },
   },
   test: {
@@ -24,4 +21,4 @@ export default defineConfig({
     setupFiles: './src/setupTests.js',
     css: true,
   },
-});
+}));
