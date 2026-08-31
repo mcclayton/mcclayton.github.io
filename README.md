@@ -1,5 +1,5 @@
 # My Online Portfolio
-[![CircleCI](https://circleci.com/gh/mcclayton/mcclayton.github.io.svg?style=svg)](https://circleci.com/gh/mcclayton/mcclayton.github.io)
+[![Deploy to GitHub Pages](https://github.com/mcclayton/mcclayton.github.io/actions/workflows/deploy-pages.yml/badge.svg?branch=master)](https://github.com/mcclayton/mcclayton.github.io/actions/workflows/deploy-pages.yml)
 
 ![](src/images/mcc.svg)
 
@@ -17,10 +17,12 @@ npm test
 ```
 
 ## Deploy Site
-To deploy this site to [Github Pages](https://pages.github.com/) (must be properly authenticated), run:
-```
-npm run deploy
-```
+Pushes to `master` automatically test, build, and deploy the site through the
+[GitHub Pages workflow](https://github.com/mcclayton/mcclayton.github.io/actions/workflows/deploy-pages.yml).
+The workflow can also be started manually from the Actions tab.
+
+The repository's Pages source must be configured as **GitHub Actions** under
+**Settings → Pages → Build and deployment**.
 
 ## Code Style Guide
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
