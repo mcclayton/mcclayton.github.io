@@ -1,7 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import rocket from '../../images/rocket_emoji.png';
-import styles from './styles.module.scss';
+import * as styles from './styles.css';
 
 const Footer = ({ timeout }) => (
   <footer id="footer" style={timeout ? { display: 'none' } : {}}>

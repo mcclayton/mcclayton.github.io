@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
-import styles from './styles.module.scss';
+import * as styles from './styles.css';
 import ProcoreLogo from '../../images/timeline_procore.png';
 import SalesforceLogo from '../../images/timeline_salesforce.png';
 import PurdueLogo from '../../images/timeline_purdue.png';

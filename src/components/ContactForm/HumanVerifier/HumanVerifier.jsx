@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './styles.module.scss';
+import * as styles from './styles.css';
 const cx = classNames.bind(styles);
 
 export const USER_TYPE = {
