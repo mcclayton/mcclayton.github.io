@@ -5,7 +5,11 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 export default defineConfig(({ mode }) => ({
   plugins: [
-    react(),
+    react({
+      compiler: {
+        target: '18',
+      },
+    }),
     vanillaExtractPlugin({
       identifiers: mode === 'production' ? 'short' : 'debug',
     }),
