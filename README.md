@@ -4,7 +4,7 @@
 ![](src/images/mcc.svg)
 
 ## View Live Site
-http://michaelcclayton.com
+https://michaelcclayton.com
 
 ## Run Locally
 - Requires Node 24.15+ and npm 10+ (`nvm install && nvm use`).

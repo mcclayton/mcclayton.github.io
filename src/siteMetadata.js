@@ -1,7 +1,7 @@
 export const SITE_METADATA = {
   title: 'Michael C. Clayton',
   description: "Michael Clayton's Online Portfolio",
-  siteUrl: 'http://michaelcclayton.com',
+  siteUrl: 'https://michaelcclayton.com',
   keywords: [
     'portfolio',
     'michael',
