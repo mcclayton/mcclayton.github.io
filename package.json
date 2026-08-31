@@ -12,6 +12,7 @@
     "copy-text-to-clipboard": "^3.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
+    "react-compiler-runtime": "^1.0.0",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^7.18.3"
@@ -40,6 +41,7 @@
     "@vanilla-extract/vite-plugin": "^5.2.6",
     "@vitejs/plugin-react": "^6.1.1",
     "jsdom": "^30.0.1",
+    "oxc-transform-react": "^0.145.0",
     "prettier": "^3.9.6",
     "vite": "^8.2.2",
     "vitest": "^4.1.11"
